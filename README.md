@@ -1,9 +1,9 @@
-Rotterdam
+Twistlock
 =========
 Container management system
 ---------------------------
 
-The idea of Rotterdam is to provide an abstract interface for running
+The idea of Twistlock is to provide an abstract interface for running
 containers and linking them to external services and resources.
 
 Interface
@@ -22,7 +22,7 @@ and the resources that the container consumes.
 System
 ------
 
-The Rotterdam system listens for JSON-rpc requests given to it over a socket.
+The Twistlock system listens for JSON-rpc requests given to it over a socket.
 It will be capable of the following actions:
 
 1. Add container description. This command makes the service download or receive
