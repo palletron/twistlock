@@ -8,17 +8,18 @@ containers and linking them to external services and resources.
 
 Interface
 ---------
-A container interface consists of a group of scripts and a description file:
+A container interface consists of a control script and a description file.
+The control script must implement the following commands:
 
-1. The build script prepares the container for running. It takes no
+1. The build command prepares the container for running. It takes no
 parameters.
-2. The start script runs the container, it reads in a JSON file with
-runtime configuration information like the IP endpoints of external
-services.
-3. The stop script stops the container.
-4. The link script configures the container to connect to given IP endpoints for
+2. The start command runs the container, it reads in a JSON file with
+runtime configuration information like the resource mount points.
+3. The stop command stops the container.
+4. The link command configures the container to connect to given IP endpoints for
 services it consumes.
-5. The description file describes the resources that the container provides,
+
+The description file describes the resources that the container provides,
 and the resources that the container consumes.
 
 System
