@@ -72,9 +72,28 @@ configuration options also seem suitable they might get their own actions or if 
 that there are more than one of them they might be grouped in a reconfigure command.
 
 Twistlock Management System
-------------------------
+========================
 
 The Twistlock management system is a web user interface that allows users to easily add new container
 templates and to build run and link them. There will be a single web backend that can talk to multiple
 twistlock provisioners. Information about the current state and organisation of the container instances
 is stored in a database. Possibly the system is also authenticated.
+
+System Organisation
+------------------
+
+A system is a group of containers working together, like a Ruby on Rails application that uses a Postgres
+SQL container for persistance, a Redis container for caching and a Sidekiq container for tasks, which also
+links to a Redis container to maintain its queue. Twistlock will let you define a template for this whole
+system of containers so the system can be replicated, but also so that it can be scaled. Each node
+in a system template could also be a system. Perhaps the Postgres node is not a single container but in
+fact a replicated and sharded postgres cluster of containers, spread over multiple datacenters.
+
+For each twistlock provisioner the user can define roles and resources. For example a twistlock provisioner
+can have the ‘db-server’ role, and have associated with it a data directory that is mounted on high performance
+SSD drives in a RAID. Associated with a role and its resources can perhaps be a provisioning script that could
+automatically provision a new machine with the required resources, and run on it a twistlock provisioner tagged
+with that role.
+
+The previous two concepts are combined to allow the user to provision hardware, initialize its resources and tagging
+it with roles and then starting the system templates by assigning them to the servers with the matching roles.
